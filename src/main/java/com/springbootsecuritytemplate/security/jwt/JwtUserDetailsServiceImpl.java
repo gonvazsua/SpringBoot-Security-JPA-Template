@@ -13,7 +13,8 @@ import com.springbootsecuritytemplate.security.repository.UserRepository;
 
 
 /**
- * Created by stephan on 20.03.16.
+ * @author gonzalo
+ *
  */
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
@@ -21,14 +22,22 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        
+    	User user = userRepository.findByUsername(username);
 
         if (user == null) {
+        	
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+            
         } else {
+        	
             return JwtUserFactory.create(user);
+            
         }
     }
 }

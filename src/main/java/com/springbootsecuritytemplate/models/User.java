@@ -21,6 +21,10 @@ import javax.persistence.JoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author gonzalo
+ *
+ */
 @Entity
 @Table(name = "user")
 public class User {
@@ -57,50 +61,86 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
 
+	/**
+	 * @return
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getLastPasswordResetDate() {
 		return lastPasswordResetDate;
 	}
 
+	/**
+	 * @param lastPasswordResetDate
+	 */
 	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
 		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<Authority> getAuthorities() {
 		return authorities;
 	}
 
+	/**
+	 * @param authorities
+	 */
 	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
 	}
 
+	/**
+	 * @return
+	 */
 	public Boolean getEnabled() {
 		return enabled;
 	}
 
+	/**
+	 * @param enabled
+	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}

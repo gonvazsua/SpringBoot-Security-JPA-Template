@@ -12,12 +12,20 @@ import com.springbootsecuritytemplate.models.Authority;
 import com.springbootsecuritytemplate.models.User;
 
 
+/**
+ * @author gonzalo
+ *
+ */
 public final class JwtUserFactory {
 
-    private JwtUserFactory() {
-    }
+    private JwtUserFactory() {}
 
+    /**
+     * @param user
+     * @return
+     */
     public static JwtUser create(User user) {
+    	
         return new JwtUser(
                 user.getId(),
                 user.getUsername(),
@@ -26,11 +34,18 @@ public final class JwtUserFactory {
                 user.getEnabled(),
                 user.getLastPasswordResetDate()
         );
+        
     }
 
+    /**
+     * @param authorities
+     * @return
+     */
     private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {
-        return authorities.stream()
+        
+    	return authorities.stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getName().name()))
                 .collect(Collectors.toList());
+    
     }
 }

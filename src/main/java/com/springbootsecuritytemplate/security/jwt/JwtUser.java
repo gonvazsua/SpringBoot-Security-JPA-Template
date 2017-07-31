@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 /**
- * Created by stephan on 20.03.16.
+ * @author gonzalo
+ *
  */
 public class JwtUser implements UserDetails {
 
@@ -22,6 +24,14 @@ public class JwtUser implements UserDetails {
     private final boolean enabled;
     private final Date lastPasswordResetDate;
 
+    /**
+     * @param id
+     * @param username
+     * @param password
+     * @param authorities
+     * @param enabled
+     * @param lastPasswordResetDate
+     */
     public JwtUser(
           Long id,
           String username,
@@ -37,50 +47,77 @@ public class JwtUser implements UserDetails {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
+    /**
+     * @return
+     */
     @JsonIgnore
     public Long getId() {
         return id;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#getUsername()
+     */
     @Override
     public String getUsername() {
         return username;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#isAccountNonExpired()
+     */
     @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#isAccountNonLocked()
+     */
     @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#isCredentialsNonExpired()
+     */
     @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#getPassword()
+     */
     @JsonIgnore
     @Override
     public String getPassword() {
         return password;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#getAuthorities()
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.core.userdetails.UserDetails#isEnabled()
+     */
     @Override
     public boolean isEnabled() {
         return enabled;
     }
 
+    /**
+     * @return
+     */
     @JsonIgnore
     public Date getLastPasswordResetDate() {
         return lastPasswordResetDate;
